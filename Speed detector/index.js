@@ -27,3 +27,5 @@ rl.question('Enter the car\'s speed (in km/h): ', (input) => {
 
   rl.close();
 });
+//The system prompts output from the linked speed.js
+//The system seems to be working just fine
