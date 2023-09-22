@@ -1,7 +1,7 @@
-// well detaoled user interactive index.js
+// well detailed user interactive index.js
 
 const readline = require('readline');
-const { calculateDemeritPoints } = require('./speed.js'); // Import the speed-related logic
+const { calculateDemeritPoints } = require('./speed'); // Import the speed-related logic
 
 const rl = readline.createInterface({
   input: process.stdin,

@@ -2,7 +2,7 @@
  // Takes the speed the user inputs in km/hr which is recieved using the document.getElementById() method
  // The speed is parsed as an integer value using parseInt() and given a variable called speed
 
- // speed.js
+ // speed operator system
 
 const speedLimit = 70;
 const demeritPointsPer5KmOverLimit = 1;
