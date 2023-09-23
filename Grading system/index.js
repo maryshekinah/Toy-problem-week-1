@@ -20,4 +20,3 @@ rl.question('Enter the student\'s mark (between 0 and 100): ', (input) => {
   rl.close();
 });
 //The system gets output from the linked grading.js
-//The system seems to be working just fine
