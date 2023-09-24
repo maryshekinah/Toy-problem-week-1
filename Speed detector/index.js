@@ -12,6 +12,7 @@ rl.question('Enter the car\'s speed (in km/h): ', (input) => {
   const speed = parseFloat(input);
 
   if (isNaN(speed)) {
+    //determine whether a value is NaN
     console.log('Invalid input. Please enter a valid speed.');
   } else {
     const demeritPoints = calculateDemeritPoints(speed);
@@ -28,4 +29,3 @@ rl.question('Enter the car\'s speed (in km/h): ', (input) => {
   rl.close();
 });
 //The system prompts output from the linked speed.js
-//The system seems to be working just fine

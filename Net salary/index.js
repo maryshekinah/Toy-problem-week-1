@@ -1,15 +1,11 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Net Salary Calculator</title>
-</head>
-<body>
-  <h1>Net Salary Calculator</h1>
-  <form id="salaryCalculatorForm">
-    <label for="basicSalary">Basic Salary:</label>
-    <input type="number" id="basicSalary" name="basicSalary" required><br><br>
+const readline = require('readline');
+const { calculateNatSalary } = require('./salary.js');
 
-    <label for="benefits">Benefits:</label>
-    <input type="number" id="benefits" name="benefits" required><br><br>
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+  });
+  const basicSalary = parseFloat(document.getElementById("basicSalary").value);
+  const benefits = parseFloat(document.getElementById("benefits").value);
 
-    <button type="button" onclick="calculateNetSalary()">Calculate Net Sala
+  // Your salary calculation code (use the previous code here)
