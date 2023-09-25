@@ -1,11 +1,13 @@
-const readline = require('readline');
-const { calculateNatSalary } = require('./salary.js');
+const getGrade = require("./salary.js");
 
 const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-  });
-  const basicSalary = parseFloat(document.getElementById("basicSalary").value);
-  const benefits = parseFloat(document.getElementById("benefits").value);
+  input: process.stdin,
+  output: process.stdout,
+});
+
+rl.question("Enter basic salary : ", () => {
+  console.log(getsalary(salary));
+  rl.close();
+});
 
   // Your salary calculation code (use the previous code here)
