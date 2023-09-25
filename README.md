@@ -48,10 +48,10 @@ https://www.kra.go.ke/en/individual/calculate-tax/calculating-tax/paye
 The function
 ```sh
  
-function calculateNetSalary(basicSalary, benefits) 
+function salaryCalculator(basicSalary)
  
 ```
-
+Proceed ahead by calling out other rates with the data provided in the links above.
 
 ## Tech
 
