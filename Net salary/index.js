@@ -1,7 +1,7 @@
 // index.js
 
 const readline = require('readline');
-const netSalary = require('./salary.js');
+const netSalary = require('./salary.js');//linked our salary,js to the user interactive 
 
 const rl = readline.createInterface({
   input: process.stdin,
