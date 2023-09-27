@@ -1,13 +1,21 @@
-const getGrade = require("./salary.js");
+// index.js
+
+const readline = require('readline');
+const netSalary = require('./salary.js');
 
 const rl = readline.createInterface({
   input: process.stdin,
-  output: process.stdout,
+  output: process.stdout
 });
 
-rl.question("Enter basic salary : ", () => {
-  console.log(getsalary(salary));
-  rl.close();
+rl.question('Enter Basic Salary: ', (basicSalary) => {
+  rl.question('Enter Benefits: ', (benefits) => {
+    rl.question('Deduct NSSF (true/false): ', (deduct_nssf) => {
+      rl.question('Deduct NHIF (true/false): ', (deduct_nhif) => {
+        const netPay = netSalary(basicSalary, benefits, deduct_nssf === 'true', deduct_nhif === 'true');
+        console.log(`Net Salary: ${netPay}`);
+        rl.close();
+      });
+    });
+  });
 });
-
-  // Your salary calculation code (use the previous code here)

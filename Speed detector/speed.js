@@ -1,20 +1,15 @@
-const speedLimit = 70;
-const demeritPointsPer5KmOverLimit = 1;
-const maxDemeritPoints = 12;
-// declare the variable names with a constant variable
+// contains a function calculateDemeritPoints which takes the speed as input and calculates the demerit points.
 function calculateDemeritPoints(speed) {
-  if (speed <= speedLimit) {
-    return 0;
+  if (speed < 70) {
+    return 'Ok';
   } else {
-    const excessSpeed = speed - speedLimit;
-    const demeritPoints = Math.floor(excessSpeed / 5);
-    return Math.min(demeritPoints, maxDemeritPoints);
+    const demeritPoints = Math.floor((speed - 70) / 5);
+    if (demeritPoints > 12) {
+      return 'License suspended';
+    } else {
+      return 'Points: ' + demeritPoints;
+    }
   }
 }
-// if else statement 
-// math.floor to convert demeritpoints to whole number
-//math.min to look for the minimum value
-module.exports = {
-  calculateDemeritPoints,
-};
-// holds the exported values and functions from that module.exports 
+
+module.exports = calculateDemeritPoints;

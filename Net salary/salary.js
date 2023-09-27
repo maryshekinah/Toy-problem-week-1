@@ -1,58 +1,139 @@
-function salaryCalculator(basicSalary){
-const salary = basicSalary 
-
-    function payeeRates(salary) {
-        const taxRate = [
-            { min: 0, max: 24000, rate: 0.1 },
-            { min: 24001, max: 32333, rate: 0.25 },
-            { min: 32334, max: 500000, rate: 0.3 },
-            { min: 500001, max: 800000, rate: 0.32 },
-            { min: 800001, max: Infinity, rate: 0.35 },
-        ];
-        for (const rate of taxRate) {
-            if (rate.min <= salary && salary <= rate.max) {
-                return salary * rate.rate;
+//has a function netsalary
+function netSalary() {
+    // Variable names declared by let
+        let basicSalary;
+        let benefits;
+        let deduct_nssf;
+        let deduct_nhif;
+  //Calculating the gross salary/Total income of the individual
+        const totalIncome = () => {
+            let total = 0;
+            if (basicSalary !== null && benefits !== null) {
+                if (basicSalary >= 0 && benefits >= 0) {
+                    total = basicSalary + benefits;
+                }
             }
-        }
-        
-    }
-
-    const payee = payeeRates(salary)
-
-    function nhifRate(salary) {
-        const nhifRates = [
-            { min: 0, max: 5999, rate: 150 },
-            { min: 6000, max: 7999, rate: 300 },
-            { min: 8000, max: 11999, rate: 400 },
-            { min: 12000, max: 14999, rate: 500 },
-            { min: 15000, max: 19999, rate: 600 },
-            { min: 20000, max: 24999, rate: 750 },
-            { min: 25000, max: 29999, rate: 850 },
-            { min: 30000, max: 34999, rate: 900 },
-            { min: 35000, max: 39999, rate: 950 },
-            { min: 40000, max: 44999, rate: 1000 },
-            { min: 45000, max: 49999, rate: 1100 },
-            { min: 50000, max: 59999, rate: 1200 },
-            { min: 60000, max: 69999, rate: 1300 },
-            { min: 70000, max: 79999, rate: 1400 },
-            { min: 80000, max: 89999, rate: 1500 },
-            { min: 90000, max: 99999, rate: 1600 },
-            { min: 100000, max: Infinity, rate: 1700 },
-        ];
-
-        for (const rate of nhifRate) {
-            if (rate.min <= salary && salary <= rate.max) {
-                return rate.rate;
+            return total;
+        };
+  // i have invoked the nssfDeduction function to provide the correct nssf deductions
+        const deductNSSF = () => {
+            let deduction = 0;
+            if (deduct_nssf) {
+                deduction = nssfDeduction();
+            } else {
+                deduction = 0;
             }
+            return deduction;
+        };
+  //i have invoked the nhifDeduction function to provide the correct nhif deductions
+        const deductNHIF = () => {
+            let deduction = 0;
+            if (deduct_nhif) {
+                deduction = nhifDeduction();
+            } else {
+                deduction = 0;
+            }
+            return deduction;
+        };
+  //calculate the nssf deductions
+        const nssfDeduction = () => {
+            let basicSalary = totalIncome();
+            let nssfAmount =  basicSalary * 0.12;
+            return nssfAmount;
+        };
+  //calculate the nhif deductions according to each person's income
+        const nhifDeduction = () => {
+            let basicSalary = totalIncome();
+            let nhifAmount = 0;
+  
+            if (basicSalary <= 5999) {
+                nhifAmount = 150;
+            } else if (basicSalary >= 6000 && basicSalary <= 7999) {
+                nhifAmount = 300;
+            } else if (basicSalary >= 8000 && basicSalary <= 11999) {
+                nhifAmount = 400;
+            } else if (basicSalary >= 12000 && basicSalary <= 14999) {
+                nhifAmount = 500;
+            } else if (basicSalary >= 15000 && basicSalary <= 19999) {
+                nhifAmount = 600;
+            } else if (basicSalary >= 20000 && basicSalary <= 24999) {
+                nhifAmount = 750;
+            } else if (basicSalary >= 25000 && basicSalary <= 29999) {
+                nhifAmount = 850;
+            } else if (basicSalary >= 30000 && basicSalary <= 34999) {
+                nhifAmount = 900;
+            } else if (basicSalary >= 35000 && basicSalary <= 39999) {
+                nhifAmount = 950;
+            } else if (basicSalary >= 40000 && basicSalary <= 44999) {
+                nhifAmount = 1000;
+            } else if (basicSalary >= 45000 && basicSalary <= 49999) {
+                nhifAmount = 1100;
+            } else if (basicSalary >= 50000 && basicSalary <= 59999) {
+                nhifAmount = 1200;
+            } else if (basicSalary >= 60000 && basicSalary <= 69999) {
+                nhifAmount = 1300;
+            } else if (basicSalary >= 70000 && basicSalary <= 79999) {
+                nhifAmount = 1400;
+            } else if (basicSalary >= 80000 && basicSalary <= 89999) {
+                nhifAmount = 1500;
+            } else if (basicSalary >= 90000 && basicSalary <= 99999) {
+                nhifAmount = 1600;
+            } else if (basicSalary >= 100000) {
+                nhifAmount = 1700;
+            }
+  
+        return nhifAmount;
+    };
+  // Calculate the tax from each person's gross salary/total income
+        const getTaxOnTaxableIncome = () => {
+            let income = totalIncome();
+            let amount = 0;
+  
+        if ((income <= 24000)) {
+            amount += income * 0.1;
+        } else if (income >= 24001 && income <= 32333) {
+            amount += income * 0.25;
+        } else if (income >= 32334 && income <= 500000) {
+            amount += income * 0.30;
+        } else if (income >= 500001 && income <= 800000) {
+            amount += income * 0.325;
+        } else if (income > 800000) {
+            amount += income * 0.35;
         }
-    }
-    const NHIF = nhifRate(salary)
-
-    const nssfRate = salary * 0.06;
-    const netSalary = salary - (payee + NHIF + nssfRate);
-
-    return `You have a payee of ${payee} and your netSalary is ${netSalary}`;
-
-}
-
-module.exports = salaryCalculator;
+        return amount;
+    };
+  // calculate the personal relief
+        const getPersonalRelief = () => {
+            let relief = 2400;
+            return relief;
+        };
+  // calculate the tax on each persons's relief
+        const getTaxOffRelief = () => {
+            let amount = getTaxOnTaxableIncome() - getPersonalRelief();
+            return amount;
+        };
+  // calculate each person's paye
+        const getPAYE = () => {
+            let amount = getTaxOnTaxableIncome() - getPersonalRelief();
+            return amount;
+        };
+  // calculate the house levy
+        const houseTax = () => {
+          let amount = totalIncome() * 0.03;
+          return amount;
+        };
+  // calculate the net salary
+        const getNetPay = () => {
+            let paye = getPAYE();
+            let nhif = deductNHIF();
+            let relief = getTaxOffRelief();
+            let nssf = deductNSSF();
+            let houseLevy = houseTax();
+            let totalAmount = totalIncome();
+  
+            let pay = totalAmount - (paye + nhif + relief + nssf + houseLevy);
+            return pay;
+        };
+  
+        console.log(pay);
+    };

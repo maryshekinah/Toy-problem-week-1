@@ -1,31 +1,16 @@
-// well detailed user interactive index.js
+//we use readline to get user input for the speed of the car.
+
 
 const readline = require('readline');
-const { calculateDemeritPoints } = require('./speed'); // Import the speed-related logic
-
+const calculateDemeritPoints = require('./speed.js');
+// We then import the calculateDemeritPoints function from speed.js and use it to calculate.
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout
 });
 
-rl.question('Enter the car\'s speed (in km/h): ', (input) => {
-  const speed = parseFloat(input);
-
-  if (isNaN(speed)) {
-    //determine whether a value is NaN
-    console.log('Invalid input. Please enter a valid speed.');
-  } else {
-    const demeritPoints = calculateDemeritPoints(speed);
-
-    if (demeritPoints === 0) {
-      console.log('Ok');
-    } else if (demeritPoints >= maxDemeritPoints) {
-      console.log('License suspended');
-    } else {
-      console.log(`Points: ${demeritPoints}`);
-    }
-  }
-
+rl.question('Enter the speed of the car (in km/h): ', (speed) => {
+  const result = calculateDemeritPoints(speed);
+  console.log(result);
   rl.close();
 });
-//The system prompts output from the linked speed.js
