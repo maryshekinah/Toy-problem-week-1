@@ -1,4 +1,5 @@
 // contains a function calculateDemeritPoints which takes the speed as input and calculates the demerit points.
+let speed;
 function calculateDemeritPoints(speed) {
   if (speed < 70) {
     return 'Ok';
